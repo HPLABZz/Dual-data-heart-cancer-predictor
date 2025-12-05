@@ -6,9 +6,9 @@ A machine learning project that uses dual data sources — genomic data and life
 
 📊 Dual-Data Input: Uses genomic variants + lifestyle metrics.
 
-🧬 Genomic Feature Extraction: SNP encoding, mutation mapping, and gene-level scoring.
+🧬 Genomic Feature Extraction: Mutation mapping, and gene-level scoring.
 
-🧠 Machine Learning Models: KNN / Random Forest / Logistic Regression.
+🧠 Machine Learning Models: Random Forest classifier
 
 🎯 Predicts Two Diseases: Heart Disease and Cancer.
 

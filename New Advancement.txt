@@ -1,4 +1,1 @@
-1. Risk Level Indicators (Low / Medium / High) 
-2. AI Lifestyle Recommendations (Based on Prediction & Lifestyle Data) 
-3. Store Every Prediction in Database (Patient History)
-4. Smart Auto-Feature Validator (Live Error Checker)
+1. AI Lifestyle Recommendations (Based on Prediction & Lifestyle Data) 

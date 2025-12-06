@@ -1,70 +1,140 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Prediction Results</title>
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<html>
+<head>
+    <title>Prediction Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-            <style>
-                body {
-                    margin: 0;
-                    padding: 0;
-                    background: linear-gradient(180deg, #080446, #211a9be5, #1389c59b);
-                    min-height: 100vh;
-                    font-family: "Poppins", sans-serif;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #080446, #211a9be5, #1389c59b);
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-                .box {
-                    width: 90%;
-                    max-width: 600px;
-                    background: rgba(255, 255, 255, 0.08);
-                    border-radius: 18px;
-                    padding: 30px;
-                    backdrop-filter: blur(10px);
-                    animation: fadeIn 0.8s ease;
-                    color: #fff;
-                    text-align: center;
-                    box-shadow: 0px 0px 10px rgba(19, 19, 19, 0.182);
-                }
-                
-                h2 {font-weight: 600;}
-                p {font-size: 18px; margin: 12px 0;}
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            column-gap: 60px;
+            row-gap: 50px;
+            width: 90%;
+            padding: 30px;
+        }
 
-                a {
-                    display: inline-block;
-                    margin-top: 18px;
-                    padding: 10px 20px;
-                    background: #06D6A0;
-                    color: #003459;
-                    border-radius: 8px;
-                    text-decoration: none;
-                    font-weight: 600;
-                    transition: 0.25s;
-                }
+        .box1 {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.8s ease;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(19, 19, 19, 0.182);
+        }
 
-                a:hover {
-                    background: #05C492;
-                    transform: scale(1.05);
-                }
+        .box2 {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.8s ease;
+            color: #fff;
+            text-align: start;
+            box-shadow: 0px 0px 10px rgba(19, 19, 19, 0.182);
+        }
 
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(25px); }
-                    to   { opacity: 1; transform: translateY(0); }
-                }
-            </style>
+        h2 {font-weight: 600; margin-bottom: 10px;}
+        p {font-size: 18px; margin: 12px 0;}
 
-        </head>
-            <body>
-                <div class="box">
-                    <h2><u>Prediction Result</u></h2>
+        .risk-box {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 18px;
+        }
 
+        .green { background: #00c853b4; }
+        .yellow { background: #ffeb3bb4; color: black; }
+        .red { background: #ff5252c9; }
 
-                <p><b>Diabetes Risk:</b> {{ diabetes }}</p>
-                <p><b>Heart Disease Risk:</b> {{ heart }}</p>
+        .recommend-box {
+            margin-top: 22px;
+            background: rgba(0,0,0,0.35);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+        }
 
-                <a href="/">← Predict Again</a>
+        .recommend-box ul {margin: 0; padding-left: 20px;}
+
+        a {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 20px;
+            background: #06D6A0;
+            color: #003459;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        a:hover {background: #05b687;}
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="box1">
+            <h2><u>Prediction Result</u></h2>
+            <p><b>Diabetes Risk:</b> {{ diabetes }}</p>
+            <div class="risk-box {{ diabetes_color }}">{{ diabetes_risk }}</div>
+            <p><b>Heart Disease Risk:</b> {{ heart }}</p>
+            <div class="risk-box {{ heart_color }}">{{ heart_risk }}</div>
+            <a href="/">Predict Again ←</a>
+        </div>
+
+        <div class="box1">
+            <div class="recommend-box">
+                <h2><u>Lifestyle Recommendations</u></h2>
+                <ul>
+                    {% for tip in recommendations %}
+                        <li>{{ tip }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-        </body>
-    </html>
+        </div>
+
+        <div class="box2">
+            <h2><u>Diet Chart </u></h2>
+            <p>✔ High Fiber Foods</p>
+            <p>✔ Low Sugar / Low GI Meals</p>
+            <p>✔ More Vegetables & Fruits</p>
+            <p>✔ Avoid Fried & Oily Foods</p>
+            <p>✔ Drink 3–4 Liters of Water Daily</p>
+        </div>
+
+        <div class="box2">
+            <h2><u>Workout Plan</u></h2>
+            <p>✔ 30–40 min brisk walking</p>
+            <p>✔ Light cardio (cycling/jogging)</p>
+            <p>✔ 15 min stretching/yoga</p>
+            <p>✔ 3× a week strength training</p>
+            <p>✔ Keep active throughout the day</p>
+        </div>
+
+    </div>
+</body>
+</html>

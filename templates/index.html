@@ -73,7 +73,7 @@
                 width: 100%;
                 padding: 14px;
                 margin-top: 20px;
-                background: #06D6A0;
+                background: #01e1ff;
                 border: none;
                 border-radius: 10px;
                 cursor: pointer;
@@ -82,10 +82,9 @@
                 color: #003459;
                 transition: 0.25s;
             }
-
+            
             button:hover {
-                background: #05C492;
-                transform: scale(1.04);
+                background: #01a0b5;
             }
 
             .alert {
@@ -173,6 +172,43 @@
                     }, 2000);
                 }
             }
+            const lifeBox = document.querySelector('textarea[name="life_data"]');
+            const genBox = document.querySelector('textarea[name="gen_data"]');
+            const submitBtn = document.querySelector('button[type="submit"]');
+
+            const lifeCounter = document.createElement("div");
+            lifeCounter.style.color = "yellow";
+            lifeCounter.style.marginTop = "5px";
+            lifeCounter.style.fontWeight = "bold";
+            lifeBox.insertAdjacentElement("afterend", lifeCounter);
+
+            const genCounter = document.createElement("div");
+            genCounter.style.color = "yellow";
+            genCounter.style.marginTop = "5px";
+            genCounter.style.fontWeight = "bold";
+            genBox.insertAdjacentElement("afterend", genCounter);
+
+            function countValues(text) {
+                let cleaned = text.replace(/[^0-9,.\-]/g, ""); 
+                let items = cleaned.split(",").filter(v => v.trim() !== "");
+                return items.length;
+            }
+
+            function validate() {
+                let lifeCount = countValues(lifeBox.value);
+                let genCount = countValues(genBox.value);
+
+                lifeCounter.textContent = `Lifestyle: ${lifeCount}/132`;
+                genCounter.textContent  = `Genomics: ${genCount}/22`;
+                lifeCounter.style.color = lifeCount === 132 ? "#00ff88" : "yellow";
+                genCounter.style.color = genCount === 22 ? "#00ff88" : "yellow";
+                submitBtn.disabled = !(lifeCount === 132 && genCount === 22);
+                submitBtn.style.opacity = submitBtn.disabled ? "0.5" : "1";
+            }
+
+            lifeBox.addEventListener("input", validate);
+            genBox.addEventListener("input", validate);
+
         </script>
     </body>
 </html>

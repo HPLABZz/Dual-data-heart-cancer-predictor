@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GeneAI Prediction</title>
+        <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Chokokutai&family=Kelly+Slab&family=Science+Gothic:slnt,wght@-5,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        
+    <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(180deg, #03004f, #003459, #0178a0);
+                min-height: 100vh;
+                font-family: "Aldrich", 'Times New Roman';
+                font-size: large;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            body::before { content: ""; position: fixed; inset: 0; background: repeating-linear-gradient( to bottom, rgba(0, 3, 3, 0.135), rgba(4, 0, 255, 0.06) 2px, transparent 3px, transparent 6px ); pointer-events: none;}
+
+            .container {
+                width: 90%;
+                max-width: 900px;
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 18px;
+                padding: 32px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+                animation: fadeIn .1s ease;
+                color: #fff;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(0px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+
+            h2 {
+                margin-top: 0;
+                text-align: center;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+
+            .rightPadding{
+                margin-right: 20px;
+            }
+
+            label {
+                font-weight: 400;
+                font-size: 14px;
+            }
+
+            textarea {
+                width: 100%;
+                background: rgba(255,255,255,0.1);
+                border: none;
+                outline: none;
+                color: #fff;
+                padding: 10px;
+                border-radius: 10px;
+                margin-top: 5px;
+                font-size: 14px;
+            }
+
+            textarea::placeholder {
+                color: #bbb;
+            }
+
+            button {
+                width: 100%;
+                padding: 14px;
+                margin-top: 20px;
+                background: #06D6A0;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 600;
+                color: #003459;
+                transition: 0.25s;
+            }
+
+            button:hover {
+                background: #05C492;
+                transform: scale(1.04);
+            }
+
+            .alert {
+                position: fixed;
+                top: 35px;
+                right: 315px;
+                background: linear-gradient(135deg, #ff4b4b, #d40000);
+                color: white;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 125px;
+                padding-right: 125px;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+                font-size: 24px;
+                font-weight: 600;
+                z-index: 9999;
+                opacity: 0;
+                transform: translateY(-40px);
+                pointer-events: none;
+            }
+
+            .alert.show {
+                animation: fadeSlideIn 0.45s ease forwards;
+            }
+            .alert.hide {
+                animation: fadeSlideOut 0.40s ease forwards;
+            }
+            @keyframes fadeSlideIn {
+                0% { opacity: 0; transform: translateY(-40px); }
+                100% { opacity: 1; transform: translateY(0px); pointer-events: all; }
+            }
+            @keyframes fadeSlideOut {
+                0% { opacity: 1; transform: translateY(0px); }
+                100% { opacity: 0; transform: translateY(-40px); }
+            }
+
+            .alert-close {
+                margin-left: 15px;
+                cursor: pointer;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+        </head>
+    <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, msg in messages %}
+                    {% if category == "error" %}
+                        <div id="alertBox" class="alert show">
+                            <span class="alert-message">{{ msg }}</span>
+                            <span class="alert-close" onclick="hideAlert()">[close]</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="container">
+            <h2>GeneAI Disease Prediction</h2>
+
+            <form action="/predict" method="POST">
+                <label>Enter 132 Lifestyle Features (comma separated)</label>
+                <div class="rightPadding">
+                    <textarea name="life_data" rows="4" placeholder="Example: 1.0, 0.0, 0.5, ..."></textarea>
+                    <label>Enter 22 Genomic Features (comma separated)</label>
+                    <textarea name="gen_data" rows="3" placeholder="Example: 0.7, 0.3, 0.9, ..."></textarea>
+                </div>
+                <button type="submit">Predict Risk</button>
+            </form>
+        </div>
+        <script>
+            function hideAlert() {
+                const alertBox = document.getElementById("alertBox");
+                alertBox.classList.remove("show");
+                alertBox.classList.add("hide");
+                setTimeout(() => alertBox.remove(), 400);
+            }
+            window.onload = function() {
+                const alertBox = document.getElementById("alertBox");
+                if (alertBox) {
+                    setTimeout(() => {
+                        hideAlert();
+                    }, 2000);
+                }
+            }
+        </script>
+    </body>
+</html>

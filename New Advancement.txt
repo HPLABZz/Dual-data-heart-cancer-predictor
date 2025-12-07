@@ -1,1 +1,150 @@
 1. AI Lifestyle Recommendations (Based on Prediction & Lifestyle Data) 
+2. Medical Advice Warning Panel
+3. Workout Plan
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(180deg, #0d0d0d, #1f1f1f, #2d2d2d);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #00f2ff;
+            text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+        }
+
+        /* ====== GRID BOXES ====== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        @media(max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ====== CARD DESIGN ====== */
+        .box {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.25);
+            border-color: rgba(0, 255, 255, 0.4);
+        }
+
+        .box-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #00eaff;
+        }
+
+        .text {
+            font-size: 15px;
+            line-height: 1.5em;
+            color: #e5e5e5;
+        }
+
+        /* ====== BUTTON ====== */
+        .btn {
+            display: block;
+            margin: 35px auto 0;
+            padding: 12px 25px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #00eaff, #007cff);
+            color: #000;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #00eaff, #00ffbb);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Your GeneAI Prediction Results</h1>
+
+        <div class="grid">
+
+            <!-- BOX 1 -->
+            <div class="box">
+                <div class="box-title">Prediction Result</div>
+                <div class="text">
+                    
+                </div>
+            </div>
+
+            <!-- BOX 2 -->
+            <div class="box">
+                <div class="box-title">Risk Level Indicator</div>
+                <div class="text">
+                    <strong>Risk Level:</strong>  <br>
+                    <strong>Score:</strong> 
+                </div>
+            </div>
+
+            <!-- BOX 3 -->
+            <div class="box">
+                <div class="box-title">AI Lifestyle Recommendations</div>
+                <div class="text">
+                    [&#39;Maintain balanced diet with regular physical activity.&#39;, &#39;Stay hydrated and monitor body weight.&#39;, &#39;Avoid oily and deep-fried foods completely.&#39;, &#39;Reduce salt intake significantly.&#39;, &#39;Include yoga/meditation for stress control.&#39;, &#39;Do regular cardio (walking, cycling).&#39;]
+                </div>
+            </div>
+
+            <!-- BOX 4 -->
+            <div class="box">
+                <div class="box-title">Diet Chart & Workout Plan</div>
+                <div class="text">
+                    🔥 This section provides personalized diet and workout recommendations based on your prediction and risk score.  
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+
+</body>
+</html>

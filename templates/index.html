@@ -23,13 +23,14 @@
             .container {
                 width: 90%;
                 max-width: 900px;
-                background: rgba(255, 255, 255, 0.08);
+                background: rgba(255, 255, 255, 0.04);
                 border-radius: 18px;
                 padding: 32px;
                 backdrop-filter: blur(10px);
                 box-shadow: 0 0 20px rgba(0, 0, 0, .4);
                 animation: fadeIn .1s ease;
                 color: #fff;
+                box-sizing: border-box;
             }
 
             @keyframes fadeIn {
@@ -127,6 +128,23 @@
                 cursor: pointer;
                 font-size: 20px;
                 font-weight: bold;
+            }
+
+            @media (max-width: 600px) {
+                .container {
+                    height: 95%;
+                    padding: 20px;
+                    border-radius: 14px;
+                    box-shadow: 0 0 12px rgba(0,0,0,0.35);
+                }
+            }
+
+            @media (max-width: 400px) {
+                .container {
+                    height: 96%;
+                    padding: 16px;
+                    border-radius: 12px;
+                }
             }
         </style>
         </head>

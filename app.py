@@ -82,8 +82,8 @@ def predict():
     if len(life_values) != 132:
         return trigger_error(f"Lifestyle data must contain 132 values. You entered {len(life_values)}.")
 
-    if len(gen_values) != 22:
-        return trigger_error(f"Genomic data must contain 22 values. You entered {len(gen_values)}.")
+    if len(gen_values) != 20:
+        return trigger_error(f"Genomic data must contain 20 values. You entered {len(gen_values)}.")
 
     life_arr = np.array(life_values).reshape(1, -1)
     gen_arr = np.array(gen_values).reshape(1, -1)

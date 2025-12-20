@@ -169,7 +169,7 @@
                 <label>Enter 132 Lifestyle Features (comma separated)</label>
                 <div class="rightPadding">
                     <textarea name="life_data" rows="4" placeholder="Example: 1.0, 0.0, 0.5, ..."></textarea>
-                    <label>Enter 22 Genomic Features (comma separated)</label>
+                    <label>Enter 20 Genomic Features (comma separated)</label>
                     <textarea name="gen_data" rows="3" placeholder="Example: 0.7, 0.3, 0.9, ..."></textarea>
                 </div>
                 <button type="submit">Predict Risk</button>
@@ -217,11 +217,11 @@
                 let genCount = countValues(genBox.value);
 
                 lifeCounter.textContent = `Lifestyle: ${lifeCount}/132`;
-                genCounter.textContent  = `Genomics: ${genCount}/22`;
+                genCounter.textContent  = `Genomics: ${genCount}/20`;
                 lifeCounter.style.color = lifeCount === 132 ? "#00ff88" : "yellow";
-                genCounter.style.color = genCount === 22 ? "#00ff88" : "yellow";
-                submitBtn.disabled = !(lifeCount === 132 && genCount === 22);
-                submitBtn.style.opacity = submitBtn.disabled ? "0.5" : "1";
+                genCounter.style.color = genCount === 20 ? "#00ff88" : "yellow";
+                submitBtn.disabled = !(lifeCount === 132 && genCount === 20);
+                submitBtn.style.opacity = submitBtn.disabled ? "0.4" : "1";
             }
 
             lifeBox.addEventListener("input", validate);

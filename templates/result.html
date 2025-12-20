@@ -43,7 +43,19 @@
     }
 
     @media (max-width:920px){
-      .wrap { grid-template-columns:1fr; padding:0 6px }
+
+    html, body {min-height: 100%;}
+
+    body{
+      font-family: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#f6f8fb,#eef3fb);
+      color: #0b1220;
+      padding:18px;
+      display: block;
+      overflow-y: auto;
+    }
+
+    .wrap { grid-template-columns:1fr; padding:0 6px }
     }
 
     .card {
@@ -128,16 +140,16 @@
         <div style="flex:1; min-width:160px">
           <div class="muted-block">
             <div style="font-size:13px; color:var(--muted)">Diabetes</div>
-            <div style="font-weight:800; font-size:18px; margin-top:6px">3.94%</div>
-            <div style="margin-top:8px" class="risk-badge green">Low Risk</div>
+            <div style="font-weight:800; font-size:18px; margin-top:6px">{{ diabetes }}</div>
+            <div style="margin-top:8px" class="risk-badge {{ diabetes_color }}">{{ diabetes_risk }}</div>
           </div>
         </div>
 
         <div style="flex:1; min-width:160px">
           <div class="muted-block">
             <div style="font-size:13px; color:var(--muted)">Heart Disease</div>
-            <div style="font-weight:800; font-size:18px; margin-top:6px">83.37%</div>
-            <div style="margin-top:8px" class="risk-badge red">High Risk</div>
+            <div style="font-weight:800; font-size:18px; margin-top:6px">{{ heart }}</div>
+            <div style="margin-top:8px" class="risk-badge {{ heart_color }}">{{ heart_risk }}</div>
           </div>
         </div>
       </div>
